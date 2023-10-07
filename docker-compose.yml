@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  client:
+    build: .
+  db1:
+    image: cassandra:4.1.3
+    environment:
+      - HEAP_NEWSIZE=128M
+      - MAX_HEAP_SIZE=512M
+      - CASSANDRA_CLUSTER_NAME=ece473-prj03
+      - CASSANDRA_SEEDS=db1,db2,db3
+  db2:
+    extends: db1
+  db3:
+    extends: db1
